@@ -12,18 +12,23 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  var questions = [
+      'what\'s your favorite color?',
+      'what\'s your favorite animal?'
+    ];
   void answerQuestion() {
     setState(() {
-      _questionIndex += 1;
+      if (_questionIndex >= questions.length -1){
+        _questionIndex = 0;
+      }else{
+        _questionIndex += 1;
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    var questions = [
-      'what\'s your favorite color?',
-      'what\'s you faorite animal?'
-    ];
+    
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
