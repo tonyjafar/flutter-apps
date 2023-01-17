@@ -18,6 +18,7 @@ class Result extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.green,
                     fontSize: 25,
+                    fontWeight: FontWeight.bold,
                   ),
                 )
               : Text(
@@ -26,6 +27,7 @@ class Result extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.red,
                     fontSize: 25,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
           ElevatedButton(
