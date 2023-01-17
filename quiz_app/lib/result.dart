@@ -30,9 +30,20 @@ class Result extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-          ElevatedButton(
-            onPressed: _resetApp,
-            child: Text("Reset"),
+          Center(
+            heightFactor: 5,
+            child: OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                textStyle: TextStyle(
+                  fontSize: 25,
+                ),
+                foregroundColor: Colors.orange,
+                alignment: Alignment.center,
+                side: BorderSide(color: Colors.orange),
+              ),
+              onPressed: _resetApp,
+              child: Text("Reset"),
+            ),
           )
         ],
       ),
