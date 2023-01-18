@@ -30,18 +30,20 @@ class Result extends StatelessWidget {
                   ),
                 ),
           Center(
-            heightFactor: 5,
-            child: OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                textStyle: TextStyle(
-                  fontSize: 25,
+            child: Container(
+              margin: EdgeInsets.only(top: 100),
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  textStyle: TextStyle(
+                    fontSize: 25,
+                  ),
+                  foregroundColor: Colors.orange,
+                  alignment: Alignment.center,
+                  side: BorderSide(color: Colors.orange),
                 ),
-                foregroundColor: Colors.orange,
-                alignment: Alignment.center,
-                side: BorderSide(color: Colors.orange),
+                onPressed: _resetApp,
+                child: Text("Reset"),
               ),
-              onPressed: _resetApp,
-              child: Text("Reset"),
             ),
           )
         ],
