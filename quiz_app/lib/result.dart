@@ -7,8 +7,7 @@ class Result extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      margin: EdgeInsets.all(100),
+      margin: EdgeInsets.all(50),
       child: Column(
         children: [
           _totalScore > 20
