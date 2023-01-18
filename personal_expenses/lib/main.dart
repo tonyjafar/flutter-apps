@@ -26,10 +26,10 @@ class MyHomePage extends StatelessWidget {
         title: const Text("Personal Expenses"),
       ),
       body: Column(
-        children: [
-          Container(
+        children: const [
+          SizedBox(
             width: double.infinity,
-            child: const Card(
+            child: Card(
               color: Colors.blue,
               child: Text(
                 'Test 1',
@@ -37,9 +37,9 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             width: double.infinity,
-            child: const Card(
+            child: Card(
               color: Colors.blue,
               child: Text(
                 "Test2",
