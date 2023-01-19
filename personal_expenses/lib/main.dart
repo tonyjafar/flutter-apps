@@ -41,6 +41,7 @@ class MyHomePage extends StatelessWidget {
         title: const Text("Personal Expenses"),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           const SizedBox(
             width: double.infinity,
@@ -53,15 +54,27 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
           Card(
-            color: Colors.blue,
             child: Column(children: [
               ...(transactions).map((tx) {
                 return Card(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        '\$${tx.amount}',
+                      Container(
+                        margin: const EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 15,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 2,
+                          ),
+                        ),
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          '\$${tx.amount}',
+                        ),
                       ),
                       Column(
                         children: [
