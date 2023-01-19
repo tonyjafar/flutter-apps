@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:personal_expenses/transaction.dart';
 
 void main() => runApp(const MyApp());
 
@@ -12,13 +13,27 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+  MyHomePage({super.key});
+  final List<Transaction> transactions = [
+    Transaction(
+      id: 't1',
+      title: 'New Shoes',
+      amount: 99.55,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Retaurant',
+      amount: 23.55,
+      date: DateTime.now(),
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +41,8 @@ class MyHomePage extends StatelessWidget {
         title: const Text("Personal Expenses"),
       ),
       body: Column(
-        children: const [
-          SizedBox(
+        children: [
+          const SizedBox(
             width: double.infinity,
             child: Card(
               color: Colors.blue,
@@ -37,16 +52,33 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            width: double.infinity,
-            child: Card(
-              color: Colors.blue,
-              child: Text(
-                "Test2",
-                textAlign: TextAlign.center,
-              ),
-            ),
-          )
+          Card(
+            color: Colors.blue,
+            child: Column(children: [
+              ...(transactions).map((tx) {
+                return Card(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '\$${tx.amount}',
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            tx.title,
+                          ),
+                          Text(
+                            tx.date.toString(),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ]),
+          ),
         ],
       ),
     );
