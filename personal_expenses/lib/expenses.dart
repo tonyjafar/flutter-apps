@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'transaction.dart';
+import 'package:intl/intl.dart';
 
 class Expenses extends StatelessWidget {
   final List<Transaction> transactions;
@@ -44,7 +45,7 @@ class Expenses extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      tx.date.toString(),
+                      DateFormat('DD.MM.yyyy').format(tx.date),
                       style: const TextStyle(
                         color: Colors.grey,
                       ),
