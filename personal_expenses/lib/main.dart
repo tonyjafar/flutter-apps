@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:personal_expenses/transaction.dart';
 import 'expenses.dart';
+import 'add_ransaction.dart';
+import 'charts.dart';
 
 void main() => runApp(const MyApp());
 
@@ -42,18 +44,9 @@ class MyHomePage extends StatelessWidget {
         title: const Text("Personal Expenses"),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const SizedBox(
-            width: double.infinity,
-            child: Card(
-              color: Colors.blue,
-              child: Text(
-                'Test 1',
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
+          const Charts(),
+          const AddTransaction(),
           Expenses(transactions),
         ],
       ),
