@@ -1,5 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
-import 'package:personal_expenses/widgets/add_ransaction.dart';
+import 'package:personal_expenses/widgets/add_transaction.dart';
 import 'package:personal_expenses/widgets/expenses.dart';
 import 'package:personal_expenses/models/transaction.dart';
 
@@ -13,26 +15,38 @@ class UserTransaction extends StatefulWidget {
 }
 
 class _UserTransactionState extends State<UserTransaction> {
+  final List<Transaction> _transactions = [
+    Transaction(
+      id: 't1',
+      title: 'New Shoes',
+      amount: 99.55,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Retaurant',
+      amount: 23.55,
+      date: DateTime.now(),
+    ),
+  ];
+  void _addTransaction(String txTitle, double txAmount) {
+    final newTx = Transaction(
+      id: DateTime.now().toString(),
+      title: txTitle,
+      amount: txAmount,
+      date: DateTime.now(),
+    );
+    setState(() {
+      _transactions.add(newTx);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final List<Transaction> transactions = [
-      Transaction(
-        id: 't1',
-        title: 'New Shoes',
-        amount: 99.55,
-        date: DateTime.now(),
-      ),
-      Transaction(
-        id: 't2',
-        title: 'Retaurant',
-        amount: 23.55,
-        date: DateTime.now(),
-      ),
-    ];
     return Column(
       children: [
-        AddTransaction(),
-        Expenses(transactions),
+        AddTransaction(_addTransaction),
+        Expenses(_transactions),
       ],
     );
   }
