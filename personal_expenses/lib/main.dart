@@ -1,36 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:personal_expenses/transaction.dart';
-import 'expenses.dart';
-import 'add_ransaction.dart';
-import 'charts.dart';
+import 'widgets/user_transaction.dart';
+import 'widgets/charts.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
-  State<StatefulWidget> createState() {
-    return _MyAppState();
+  Widget build(BuildContext context) {
+    return const MyAppHome();
   }
 }
 
-class _MyAppState extends State<MyApp> {
-  var titleInput = TextEditingController();
-  var amountInput = TextEditingController();
-  List<Transaction> transactions = [
-    Transaction(
-      id: 't1',
-      title: 'New Shoes',
-      amount: 99.55,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Retaurant',
-      amount: 23.55,
-      date: DateTime.now(),
-    ),
-  ];
+class MyAppHome extends StatelessWidget {
+  const MyAppHome({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,10 +23,9 @@ class _MyAppState extends State<MyApp> {
           title: const Text("Personal Expenses"),
         ),
         body: Column(
-          children: [
-            const Charts(),
-            AddTransaction(amountInput, titleInput),
-            Expenses(transactions),
+          children: const [
+            Charts(),
+            UserTransaction(),
           ],
         ),
       ),

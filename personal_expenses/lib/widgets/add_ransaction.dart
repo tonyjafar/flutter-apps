@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AddTransaction extends StatelessWidget {
-  final TextEditingController amount;
-  final TextEditingController title;
-  const AddTransaction(this.amount, this.title, {super.key});
+  final amount = TextEditingController();
+  final title = TextEditingController();
+  AddTransaction({super.key});
   @override
   Widget build(Object context) {
     return Card(
