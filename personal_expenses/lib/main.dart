@@ -6,24 +6,18 @@ import 'charts.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
-
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
+  State<StatefulWidget> createState() {
+    return _MyAppState();
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  MyHomePage({super.key});
-  final List<Transaction> transactions = [
+class _MyAppState extends State<MyApp> {
+  var titleInput = TextEditingController();
+  var amountInput = TextEditingController();
+  List<Transaction> transactions = [
     Transaction(
       id: 't1',
       title: 'New Shoes',
@@ -39,17 +33,19 @@ class MyHomePage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title: const Text("Personal Expenses"),
-      ),
-      body: Column(
-        children: [
-          const Charts(),
-          const AddTransaction(),
-          Expenses(transactions),
-        ],
+    return MaterialApp(
+      home: Scaffold(
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          title: const Text("Personal Expenses"),
+        ),
+        body: Column(
+          children: [
+            const Charts(),
+            AddTransaction(amountInput, titleInput),
+            Expenses(transactions),
+          ],
+        ),
       ),
     );
   }
