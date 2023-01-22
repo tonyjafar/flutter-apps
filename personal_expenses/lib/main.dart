@@ -22,11 +22,13 @@ class MyAppHome extends StatelessWidget {
         appBar: AppBar(
           title: const Text("Personal Expenses"),
         ),
-        body: Column(
-          children: const [
-            Charts(),
-            UserTransaction(),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: const [
+              Charts(),
+              UserTransaction(),
+            ],
+          ),
         ),
       ),
     );
