@@ -27,7 +27,7 @@ class AddTransaction extends StatelessWidget {
               controller: amount,
             ),
             TextButton(
-              onPressed: addTransaction(
+              onPressed: () => addTransaction(
                 title.text,
                 double.parse(amount.text),
               ),
