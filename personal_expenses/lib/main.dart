@@ -18,16 +18,15 @@ class MyAppHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: const Text("Personal Expenses"),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: const [
-              Charts(),
-              UserTransaction(),
-            ],
-          ),
+        body: Column(
+          children: const [
+            Charts(),
+            UserTransaction(),
+          ],
         ),
       ),
     );
