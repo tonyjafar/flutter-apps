@@ -6,7 +6,7 @@ class AddTransaction extends StatelessWidget {
   final Function addTransaction;
   void submitData() {
     final enteredTitle = title.text;
-    var enteredAmount;
+    num enteredAmount;
     try {
       enteredAmount = double.parse(amount.text);
     } catch (_) {
