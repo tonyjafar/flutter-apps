@@ -1,5 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:personal_expenses/widgets/add_transaction.dart';
+import 'package:flutter/material.dart';
 import 'package:personal_expenses/widgets/expenses.dart';
 import 'package:personal_expenses/models/transaction.dart';
 
@@ -27,6 +26,8 @@ class _UserTransactionState extends State<UserTransaction> {
       date: DateTime.now(),
     ),
   ];
+  final amount = TextEditingController();
+  final title = TextEditingController();
   void _addTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
       id: DateTime.now().toString(),
@@ -39,12 +40,85 @@ class _UserTransactionState extends State<UserTransaction> {
     });
   }
 
+  void submitData() {
+    final enteredTitle = title.text;
+    var enteredAmount;
+    try {
+      enteredAmount = double.parse(amount.text);
+    } catch (_) {
+      enteredAmount = 0;
+    }
+
+    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+      return;
+    }
+
+    _addTransaction(
+      enteredTitle,
+      enteredAmount,
+    );
+  }
+
+  void startAddNewTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return GestureDetector(
+          onTap: () {},
+          behavior: HitTestBehavior.opaque,
+          child: Card(
+            elevation: 5,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextField(
+                    decoration: const InputDecoration(
+                      labelText: 'Title',
+                    ),
+                    controller: title,
+                    onSubmitted: (_) => submitData(),
+                  ),
+                  TextField(
+                    decoration: const InputDecoration(
+                      labelText: 'Amount',
+                    ),
+                    controller: amount,
+                    keyboardType: const TextInputType.numberWithOptions(
+                      decimal: true,
+                    ),
+                    onSubmitted: (_) => submitData(),
+                  ),
+                  TextButton(
+                    onPressed: () => submitData(),
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all(
+                        Colors.purple,
+                      ),
+                    ),
+                    child: const Text(
+                      'Add Transaction',
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AddTransaction(_addTransaction),
         Expenses(_transactions),
+        FloatingActionButton(
+          onPressed: () => startAddNewTransaction(context),
+          child: const Icon(Icons.add),
+        ),
       ],
     );
   }

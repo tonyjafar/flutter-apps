@@ -10,7 +10,7 @@ class Expenses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 300,
+        height: 500,
         child: ListView.builder(
           itemBuilder: (ctx, index) {
             return Card(
