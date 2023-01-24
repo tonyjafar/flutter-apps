@@ -35,6 +35,7 @@ class AddTransactionState extends State<AddTransaction> {
     );
     amount.clear();
     title.clear();
+    Navigator.of(context).pop();
   }
 
   @override
