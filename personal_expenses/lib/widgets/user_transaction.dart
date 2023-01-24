@@ -47,6 +47,8 @@ class _UserTransactionState extends State<UserTransaction> {
       enteredAmount = double.parse(amount.text);
     } catch (_) {
       enteredAmount = 0;
+      amount.clear();
+      title.clear();
     }
 
     if (enteredTitle.isEmpty || enteredAmount <= 0) {
@@ -57,6 +59,8 @@ class _UserTransactionState extends State<UserTransaction> {
       enteredTitle,
       enteredAmount,
     );
+    amount.clear();
+    title.clear();
   }
 
   void startAddNewTransaction(BuildContext ctx) {
