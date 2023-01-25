@@ -10,7 +10,7 @@ class Expenses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 500,
+        height: 400,
         child: trans.isEmpty
             ? Column(
                 children: [
@@ -22,7 +22,7 @@ class Expenses extends StatelessWidget {
                     height: 40,
                   ),
                   SizedBox(
-                    height: 200,
+                    height: 100,
                     child: Image.asset(
                       'assets/images/waiting.png',
                       fit: BoxFit.cover,

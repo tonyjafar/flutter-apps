@@ -5,7 +5,7 @@ import '../models/transaction.dart';
 class Charts extends StatelessWidget {
   final List<Transaction> recentTransaction;
   const Charts(this.recentTransaction, {super.key});
-  get groupTransactionValues {
+  List<Map<String, Object>> get groupTransactionValues {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(
         Duration(days: index),
