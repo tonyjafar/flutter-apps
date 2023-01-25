@@ -42,10 +42,7 @@ class Expenses extends StatelessWidget {
                     children: [
                       Text(
                         trans[index].title,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                       Text(
                         DateFormat('DD.MM.yyyy').format(trans[index].date),
