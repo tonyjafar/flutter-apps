@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'widgets/user_transaction.dart';
-import 'widgets/charts.dart';
 
 void main() => runApp(const MyApp());
 
@@ -44,7 +43,6 @@ class MyAppHome extends StatelessWidget {
         ),
         body: Column(
           children: const [
-            Charts(),
             UserTransaction(),
           ],
         ),

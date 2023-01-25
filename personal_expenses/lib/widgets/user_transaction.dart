@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:personal_expenses/widgets/add_transaction.dart';
 import 'package:personal_expenses/widgets/expenses.dart';
 import 'package:personal_expenses/models/transaction.dart';
+import 'charts.dart';
 
 class UserTransaction extends StatefulWidget {
   const UserTransaction({super.key});
@@ -14,6 +15,16 @@ class UserTransaction extends StatefulWidget {
 
 class _UserTransactionState extends State<UserTransaction> {
   final List<Transaction> _transactions = [];
+
+  get _recentTransactions {
+    return _transactions.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          const Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
 
   void _addTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
@@ -44,6 +55,7 @@ class _UserTransactionState extends State<UserTransaction> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Charts(_recentTransactions),
         Expenses(_transactions),
         FloatingActionButton(
           onPressed: () => startAddNewTransaction(context),
