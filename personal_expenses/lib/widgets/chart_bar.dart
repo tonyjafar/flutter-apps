@@ -49,6 +49,7 @@ class ChartBar extends StatelessWidget {
         const SizedBox(
           height: 4,
         ),
+        Text(label),
       ],
     );
   }
