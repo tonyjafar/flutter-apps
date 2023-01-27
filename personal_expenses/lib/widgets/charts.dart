@@ -1,6 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import '../models/transaction.dart';
+import 'package:personal_expenses/widgets/chart_bar.dart';
 
 class Charts extends StatelessWidget {
   final List<Transaction> recentTransaction;
@@ -25,19 +26,36 @@ class Charts extends StatelessWidget {
     });
   }
 
+  double get totalSPending {
+    return groupTransactionValues.fold(0.0, (previousValue, element) {
+      return previousValue + (element['amount'] as double);
+    });
+  }
+
   @override
   Widget build(Object context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Card(
-          elevation: 6,
-          margin: const EdgeInsets.all(20),
-          color: Colors.blue,
-          child: Row(
-            children: groupTransactionValues.map((data) {
-              return Text('${data['day']} : ${data['amount']}');
-            }).toList(),
-          )),
+    return Card(
+      elevation: 6,
+      margin: const EdgeInsets.all(20),
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupTransactionValues.map((data) {
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                data['day'].toString(),
+                (data['amount'] as double),
+                totalSPending == 0
+                    ? 0.0
+                    : ((data['amount'] as double) / totalSPending),
+              ),
+            );
+          }).toList(),
+        ),
+      ),
     );
   }
 }
