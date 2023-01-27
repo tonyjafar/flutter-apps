@@ -10,7 +10,7 @@ class Expenses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 400,
+        height: 350,
         child: trans.isEmpty
             ? Column(
                 children: [
