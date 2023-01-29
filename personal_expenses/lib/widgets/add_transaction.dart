@@ -64,11 +64,26 @@ class AddTransactionState extends State<AddTransaction> {
               ),
               onSubmitted: (_) => submitData(),
             ),
-            TextButton(
+            SizedBox(
+              height: 70,
+              child: Row(
+                children: [
+                  const Text('No Date Chosen!'),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Choose Day',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            ElevatedButton(
               onPressed: () => submitData(),
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all(
-                  Colors.purple,
+                  Colors.white,
                 ),
               ),
               child: const Text(
