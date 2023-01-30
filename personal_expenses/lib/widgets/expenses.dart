@@ -5,7 +5,8 @@ import 'package:intl/intl.dart';
 
 class Expenses extends StatelessWidget {
   final List<Transaction> trans;
-  const Expenses(this.trans, {super.key});
+  final Function deleteTransaction;
+  const Expenses(this.trans, this.deleteTransaction, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +55,11 @@ class Expenses extends StatelessWidget {
                       ),
                       subtitle: Text(
                         DateFormat.yMMMd().format(trans[index].date),
+                      ),
+                      trailing: IconButton(
+                        icon: const Icon(Icons.delete),
+                        onPressed: () =>
+                            deleteTransaction(trans.elementAt(index)),
                       ),
                     ),
                   );

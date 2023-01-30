@@ -38,6 +38,12 @@ class _UserTransactionState extends State<UserTransaction> {
     });
   }
 
+  void _deleteTransaction(Transaction tx) {
+    setState(() {
+      _transactions.remove(tx);
+    });
+  }
+
   void startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
@@ -56,7 +62,7 @@ class _UserTransactionState extends State<UserTransaction> {
     return Column(
       children: [
         Charts(_recentTransactions),
-        Expenses(_transactions),
+        Expenses(_transactions, _deleteTransaction),
         FloatingActionButton(
           onPressed: () => startAddNewTransaction(context),
           child: const Icon(Icons.add),
