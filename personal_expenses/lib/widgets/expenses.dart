@@ -60,6 +60,7 @@ class Expenses extends StatelessWidget {
                         icon: const Icon(Icons.delete),
                         onPressed: () =>
                             deleteTransaction(trans.elementAt(index)),
+                        color: Colors.red,
                       ),
                     ),
                   );
