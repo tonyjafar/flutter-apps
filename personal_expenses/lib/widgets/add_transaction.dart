@@ -61,10 +61,10 @@ class AddTransactionState extends State<AddTransaction> {
   }
 
   @override
-  Widget build(Object context) {
+  Widget build(BuildContext context) {
     return Card(
       elevation: 5,
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -87,7 +87,7 @@ class AddTransactionState extends State<AddTransaction> {
               onSubmitted: (_) => _submitData(),
             ),
             SizedBox(
-              height: 70,
+              height: MediaQuery.of(context).size.height * 0.06,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -100,7 +100,9 @@ class AddTransactionState extends State<AddTransaction> {
                     onPressed: () => _presentDatePicker(),
                     child: const Text(
                       'Choose Day',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   )
                 ],

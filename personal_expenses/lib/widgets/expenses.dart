@@ -12,7 +12,7 @@ class Expenses extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         height: MediaQuery.of(context).orientation == Orientation.portrait
-            ? MediaQuery.of(context).size.height * 0.6
+            ? MediaQuery.of(context).size.height * 0.5
             : MediaQuery.of(context).size.height * 0.3,
         child: trans.isEmpty
             ? Column(

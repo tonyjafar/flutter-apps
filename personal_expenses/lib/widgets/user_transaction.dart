@@ -85,9 +85,6 @@ class _UserTransactionState extends State<UserTransaction> {
     return Column(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).orientation == Orientation.portrait
-              ? MediaQuery.of(context).size.height * 0.2
-              : MediaQuery.of(context).size.height * 0.4,
           child: Charts(_recentTransactions),
         ),
         Expenses(_transactions, _askUser),
