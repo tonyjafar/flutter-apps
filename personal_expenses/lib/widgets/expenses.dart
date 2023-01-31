@@ -11,7 +11,9 @@ class Expenses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 350,
+        height: MediaQuery.of(context).orientation == Orientation.portrait
+            ? MediaQuery.of(context).size.height * 0.6
+            : MediaQuery.of(context).size.height * 0.3,
         child: trans.isEmpty
             ? Column(
                 children: [
@@ -23,7 +25,10 @@ class Expenses extends StatelessWidget {
                     height: 40,
                   ),
                   SizedBox(
-                    height: 100,
+                    height: MediaQuery.of(context).orientation ==
+                            Orientation.portrait
+                        ? 100
+                        : 40,
                     child: Image.asset(
                       'assets/images/waiting.png',
                       fit: BoxFit.cover,

@@ -84,11 +84,22 @@ class _UserTransactionState extends State<UserTransaction> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Charts(_recentTransactions),
+        SizedBox(
+          height: MediaQuery.of(context).orientation == Orientation.portrait
+              ? MediaQuery.of(context).size.height * 0.2
+              : MediaQuery.of(context).size.height * 0.4,
+          child: Charts(_recentTransactions),
+        ),
         Expenses(_transactions, _askUser),
-        FloatingActionButton(
-          onPressed: () => startAddNewTransaction(context),
-          child: const Icon(Icons.add),
+        SizedBox(
+          height: MediaQuery.of(context).orientation == Orientation.portrait
+              ? MediaQuery.of(context).size.height * 0.08
+              : MediaQuery.of(context).size.height * 0.06,
+          child: FloatingActionButton(
+            isExtended: true,
+            onPressed: () => startAddNewTransaction(context),
+            child: const Icon(Icons.add),
+          ),
         ),
       ],
     );
