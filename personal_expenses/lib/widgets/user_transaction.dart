@@ -5,7 +5,8 @@ import 'package:personal_expenses/models/transaction.dart';
 import 'charts.dart';
 
 class UserTransaction extends StatefulWidget {
-  const UserTransaction({super.key});
+  final double appBarHeight;
+  const UserTransaction(this.appBarHeight, {super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -74,7 +75,10 @@ class _UserTransactionState extends State<UserTransaction> {
         return GestureDetector(
           onTap: () {},
           behavior: HitTestBehavior.opaque,
-          child: AddTransaction(_addTransaction),
+          child: AddTransaction(
+            _addTransaction,
+            widget.appBarHeight,
+          ),
         );
       },
     );
@@ -87,11 +91,12 @@ class _UserTransactionState extends State<UserTransaction> {
         SizedBox(
           child: Charts(_recentTransactions),
         ),
-        Expenses(_transactions, _askUser),
+        Expenses(_transactions, _askUser, widget.appBarHeight),
         SizedBox(
-          height: MediaQuery.of(context).orientation == Orientation.portrait
-              ? MediaQuery.of(context).size.height * 0.08
-              : MediaQuery.of(context).size.height * 0.06,
+          height: (MediaQuery.of(context).size.height -
+                  widget.appBarHeight -
+                  MediaQuery.of(context).padding.top) *
+              0.09,
           child: FloatingActionButton(
             isExtended: true,
             onPressed: () => startAddNewTransaction(context),

@@ -7,12 +7,17 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return const MyAppHome();
+    return MyAppHome();
   }
 }
 
 class MyAppHome extends StatelessWidget {
-  const MyAppHome({super.key});
+  MyAppHome({super.key});
+  final myAppBar = AppBar(
+    title: const Text(
+      "Personal Expenses",
+    ),
+  );
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,14 +41,10 @@ class MyAppHome extends StatelessWidget {
       ),
       home: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: const Text(
-            "Personal Expenses",
-          ),
-        ),
+        appBar: myAppBar,
         body: Column(
-          children: const [
-            UserTransaction(),
+          children: [
+            UserTransaction(myAppBar.preferredSize.height),
           ],
         ),
       ),

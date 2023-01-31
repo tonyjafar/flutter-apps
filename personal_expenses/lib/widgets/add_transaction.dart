@@ -3,7 +3,8 @@ import 'package:intl/intl.dart';
 
 class AddTransaction extends StatefulWidget {
   final Function addTransaction;
-  const AddTransaction(this.addTransaction, {super.key});
+  final double appBarHeight;
+  const AddTransaction(this.addTransaction, this.appBarHeight, {super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -87,7 +88,10 @@ class AddTransactionState extends State<AddTransaction> {
               onSubmitted: (_) => _submitData(),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.06,
+              height: (MediaQuery.of(context).size.height -
+                      widget.appBarHeight -
+                      MediaQuery.of(context).padding.top) *
+                  0.07,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -113,6 +117,9 @@ class AddTransactionState extends State<AddTransaction> {
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all(
                   Colors.white,
+                ),
+                padding: MaterialStateProperty.all(
+                  const EdgeInsets.all(10),
                 ),
               ),
               child: const Text(

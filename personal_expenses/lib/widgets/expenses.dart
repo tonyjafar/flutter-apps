@@ -6,14 +6,22 @@ import 'package:intl/intl.dart';
 class Expenses extends StatelessWidget {
   final List<Transaction> trans;
   final Function deleteTransaction;
-  const Expenses(this.trans, this.deleteTransaction, {super.key});
+  final double appBarHeight;
+  const Expenses(this.trans, this.deleteTransaction, this.appBarHeight,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         height: MediaQuery.of(context).orientation == Orientation.portrait
-            ? MediaQuery.of(context).size.height * 0.5
-            : MediaQuery.of(context).size.height * 0.3,
+            ? (MediaQuery.of(context).size.height -
+                    appBarHeight -
+                    MediaQuery.of(context).padding.top) *
+                0.6
+            : (MediaQuery.of(context).size.height -
+                    appBarHeight -
+                    MediaQuery.of(context).padding.top) *
+                0.3,
         child: trans.isEmpty
             ? Column(
                 children: [
@@ -22,7 +30,7 @@ class Expenses extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 20,
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).orientation ==
