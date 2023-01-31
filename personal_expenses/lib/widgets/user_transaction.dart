@@ -38,9 +38,32 @@ class _UserTransactionState extends State<UserTransaction> {
     });
   }
 
+  void _askUser(Transaction tx) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: ((context) {
+        return AlertDialog(
+          title: const Text('Please Confirm'),
+          actions: [
+            TextButton(
+              onPressed: () => _deleteTransaction(tx),
+              child: const Text('Confirm'),
+            ),
+            TextButton(
+              onPressed: () => {Navigator.of(context).pop()},
+              child: const Text('Cancel'),
+            )
+          ],
+        );
+      }),
+    );
+  }
+
   void _deleteTransaction(Transaction tx) {
     setState(() {
       _transactions.remove(tx);
+      Navigator.of(context).pop();
     });
   }
 
@@ -62,7 +85,7 @@ class _UserTransactionState extends State<UserTransaction> {
     return Column(
       children: [
         Charts(_recentTransactions),
-        Expenses(_transactions, _deleteTransaction),
+        Expenses(_transactions, _askUser),
         FloatingActionButton(
           onPressed: () => startAddNewTransaction(context),
           child: const Icon(Icons.add),
