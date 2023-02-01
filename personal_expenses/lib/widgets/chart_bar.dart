@@ -13,9 +13,13 @@ class ChartBar extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: (MediaQuery.of(context).size.height -
-                  MediaQuery.of(context).padding.top) *
-              0.02,
+          height: MediaQuery.of(context).orientation == Orientation.portrait
+              ? (MediaQuery.of(context).size.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.02
+              : (MediaQuery.of(context).size.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.04,
           child: FittedBox(
             child: Text(
               '\$${spendingAmount.toStringAsFixed(0)}',
