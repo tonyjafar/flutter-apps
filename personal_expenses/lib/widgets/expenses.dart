@@ -13,15 +13,10 @@ class Expenses extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: MediaQuery.of(context).orientation == Orientation.portrait
-            ? (MediaQuery.of(context).size.height -
-                    appBarHeight -
-                    MediaQuery.of(context).padding.top) *
-                0.6
-            : (MediaQuery.of(context).size.height -
-                    appBarHeight -
-                    MediaQuery.of(context).padding.top) *
-                0.3,
+        height: (MediaQuery.of(context).size.height -
+                appBarHeight -
+                MediaQuery.of(context).padding.top) *
+            0.6,
         child: trans.isEmpty
             ? LayoutBuilder(builder: (ctx, constraints) {
                 return Column(
