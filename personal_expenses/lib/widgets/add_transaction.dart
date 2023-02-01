@@ -63,70 +63,78 @@ class AddTransactionState extends State<AddTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            TextField(
-              decoration: const InputDecoration(
-                labelText: 'Title',
+    return SingleChildScrollView(
+      child: Card(
+        elevation: 5,
+        child: Padding(
+          padding: EdgeInsets.only(
+            top: 10,
+            left: 10,
+            right: 10,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              TextField(
+                decoration: const InputDecoration(
+                  labelText: 'Title',
+                ),
+                controller: _title,
+                onSubmitted: (_) => _submitData(),
               ),
-              controller: _title,
-              onSubmitted: (_) => _submitData(),
-            ),
-            TextField(
-              decoration: const InputDecoration(
-                labelText: 'Amount',
+              TextField(
+                decoration: const InputDecoration(
+                  labelText: 'Amount',
+                ),
+                controller: _amount,
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                onSubmitted: (_) => _submitData(),
               ),
-              controller: _amount,
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
-              ),
-              onSubmitted: (_) => _submitData(),
-            ),
-            SizedBox(
-              height: (MediaQuery.of(context).size.height -
-                      widget.appBarHeight -
-                      MediaQuery.of(context).padding.top) *
-                  0.07,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    _selectedDate == null
-                        ? 'No Date Chosen!'
-                        : DateFormat.yMd().format((_selectedDate) as DateTime),
-                  ),
-                  TextButton(
-                    onPressed: () => _presentDatePicker(),
-                    child: const Text(
-                      'Choose Day',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
+              SizedBox(
+                height: (MediaQuery.of(context).size.height -
+                        widget.appBarHeight -
+                        MediaQuery.of(context).padding.top) *
+                    0.09,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      _selectedDate == null
+                          ? 'No Date Chosen!'
+                          : DateFormat.yMd()
+                              .format((_selectedDate) as DateTime),
                     ),
-                  )
-                ],
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () => _submitData(),
-              style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all(
-                  Colors.white,
-                ),
-                padding: MaterialStateProperty.all(
-                  const EdgeInsets.all(10),
+                    TextButton(
+                      onPressed: () => _presentDatePicker(),
+                      child: const Text(
+                        'Choose Day',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              child: const Text(
-                'Add Transaction',
+              ElevatedButton(
+                onPressed: () => _submitData(),
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all(
+                    Colors.white,
+                  ),
+                  padding: MaterialStateProperty.all(
+                    const EdgeInsets.all(10),
+                  ),
+                ),
+                child: const Text(
+                  'Add Transaction',
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
