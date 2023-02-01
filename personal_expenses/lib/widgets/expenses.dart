@@ -68,12 +68,23 @@ class Expenses extends StatelessWidget {
                       subtitle: Text(
                         DateFormat.yMMMd().format(trans[index].date),
                       ),
-                      trailing: IconButton(
-                        icon: const Icon(Icons.delete),
-                        onPressed: () =>
-                            deleteTransaction(trans.elementAt(index)),
-                        color: Colors.red,
-                      ),
+                      trailing: MediaQuery.of(context).size.width > 360
+                          ? TextButton.icon(
+                              icon: const Icon(Icons.delete),
+                              label: const Text('Delete'),
+                              onPressed: () =>
+                                  deleteTransaction(trans.elementAt(index)),
+                              style: ButtonStyle(
+                                foregroundColor:
+                                    MaterialStateProperty.all(Colors.red),
+                              ),
+                            )
+                          : IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: () =>
+                                  deleteTransaction(trans.elementAt(index)),
+                              color: Colors.red,
+                            ),
                     ),
                   );
                 },
