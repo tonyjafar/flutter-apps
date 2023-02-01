@@ -23,27 +23,26 @@ class Expenses extends StatelessWidget {
                     MediaQuery.of(context).padding.top) *
                 0.3,
         child: trans.isEmpty
-            ? Column(
-                children: [
-                  Text(
-                    'No Transactions added yet!',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).orientation ==
-                            Orientation.portrait
-                        ? 100
-                        : 40,
-                    child: Image.asset(
-                      'assets/images/waiting.png',
-                      fit: BoxFit.cover,
+            ? LayoutBuilder(builder: (ctx, constraints) {
+                return Column(
+                  children: [
+                    Text(
+                      'No Transactions added yet!',
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
-                  ),
-                ],
-              )
+                    SizedBox(
+                      height: constraints.maxHeight * 0.1,
+                    ),
+                    SizedBox(
+                      height: constraints.maxHeight * 0.5,
+                      child: Image.asset(
+                        'assets/images/waiting.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ],
+                );
+              })
             : ListView.builder(
                 itemBuilder: (ctx, index) {
                   return Card(
