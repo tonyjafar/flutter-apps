@@ -16,6 +16,7 @@ class UserTransaction extends StatefulWidget {
 
 class _UserTransactionState extends State<UserTransaction> {
   final List<Transaction> _transactions = [];
+  bool chartSet = false;
 
   get _recentTransactions {
     return _transactions.where((tx) {
@@ -84,14 +85,60 @@ class _UserTransactionState extends State<UserTransaction> {
     );
   }
 
+  void setVariable() {
+    setState(() {
+      chartSet = !chartSet;
+    });
+  }
+
+  List<Widget> setWidgets() {
+    if (MediaQuery.of(context).orientation == Orientation.landscape) {
+      if (chartSet) {
+        return [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Show Chart"),
+              Switch(
+                value: chartSet,
+                onChanged: (value) => setVariable(),
+              ),
+            ],
+          ),
+          SizedBox(
+            child: Charts(_recentTransactions),
+          )
+        ];
+      } else {
+        return [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Show Chart"),
+              Switch(
+                value: chartSet,
+                onChanged: (value) => setVariable(),
+              ),
+            ],
+          ),
+          Expenses(_transactions, _askUser, widget.appBarHeight)
+        ];
+      }
+    } else {
+      return [
+        SizedBox(
+          child: Charts(_recentTransactions),
+        ),
+        Expenses(_transactions, _askUser, widget.appBarHeight)
+      ];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          child: Charts(_recentTransactions),
-        ),
-        Expenses(_transactions, _askUser, widget.appBarHeight),
+        ...setWidgets(),
         SizedBox(
           height: (MediaQuery.of(context).size.height -
                   widget.appBarHeight -
