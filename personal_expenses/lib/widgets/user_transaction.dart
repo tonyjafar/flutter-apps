@@ -98,7 +98,10 @@ class _UserTransactionState extends State<UserTransaction> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Show Chart"),
+              Text(
+                "Show Chart",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
               Switch.adaptive(
                 value: chartSet,
                 onChanged: (value) => setVariable(),
@@ -114,7 +117,10 @@ class _UserTransactionState extends State<UserTransaction> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Show Chart"),
+              Text(
+                "Show Chart",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
               Switch.adaptive(
                 value: chartSet,
                 onChanged: (value) => setVariable(),

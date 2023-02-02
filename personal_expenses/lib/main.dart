@@ -18,25 +18,6 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MyAppHome();
-  }
-}
-
-class MyAppHome extends StatelessWidget {
-  MyAppHome({super.key});
-  final Widget myAppBar = Platform.isIOS
-      ? const CupertinoNavigationBar(
-          middle: Text(
-            "Personal Expenses",
-          ),
-        )
-      : AppBar(
-          title: const Text(
-            "Personal Expenses",
-          ),
-        );
-  @override
-  Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.purple,
@@ -56,26 +37,32 @@ class MyAppHome extends StatelessWidget {
           ),
         ),
       ),
-      home: Platform.isIOS
-          ? CupertinoPageScaffold(
-              resizeToAvoidBottomInset: false,
-              navigationBar: myAppBar as ObstructingPreferredSizeWidget,
-              child: SafeArea(
-                child: Column(
-                  children: [
-                    UserTransaction(
-                      (myAppBar as PreferredSizeWidget).preferredSize.height,
-                    ),
-                  ],
-                ),
-              ),
-            )
-          : Scaffold(
-              resizeToAvoidBottomInset: false,
-              appBar: myAppBar as PreferredSizeWidget,
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
-              body: Column(
+      home: MyAppHome(),
+    );
+  }
+}
+
+class MyAppHome extends StatelessWidget {
+  MyAppHome({super.key});
+  final Widget myAppBar = Platform.isIOS
+      ? const CupertinoNavigationBar(
+          middle: Text(
+            "Personal Expenses",
+          ),
+        )
+      : AppBar(
+          title: const Text(
+            "Personal Expenses",
+          ),
+        );
+  @override
+  Widget build(BuildContext context) {
+    return Platform.isIOS
+        ? CupertinoPageScaffold(
+            resizeToAvoidBottomInset: false,
+            navigationBar: myAppBar as ObstructingPreferredSizeWidget,
+            child: SafeArea(
+              child: Column(
                 children: [
                   UserTransaction(
                     (myAppBar as PreferredSizeWidget).preferredSize.height,
@@ -83,6 +70,19 @@ class MyAppHome extends StatelessWidget {
                 ],
               ),
             ),
-    );
+          )
+        : Scaffold(
+            resizeToAvoidBottomInset: false,
+            appBar: myAppBar as PreferredSizeWidget,
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
+            body: Column(
+              children: [
+                UserTransaction(
+                  (myAppBar as PreferredSizeWidget).preferredSize.height,
+                ),
+              ],
+            ),
+          );
   }
 }
