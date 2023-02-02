@@ -58,13 +58,16 @@ class MyAppHome extends StatelessWidget {
       ),
       home: Platform.isIOS
           ? CupertinoPageScaffold(
+              resizeToAvoidBottomInset: false,
               navigationBar: myAppBar as ObstructingPreferredSizeWidget,
-              child: Column(
-                children: [
-                  UserTransaction(
-                    (myAppBar as PreferredSizeWidget).preferredSize.height,
-                  ),
-                ],
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    UserTransaction(
+                      (myAppBar as PreferredSizeWidget).preferredSize.height,
+                    ),
+                  ],
+                ),
               ),
             )
           : Scaffold(
