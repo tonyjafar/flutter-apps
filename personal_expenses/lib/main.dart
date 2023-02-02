@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'widgets/user_transaction.dart';
 
 void main() {
@@ -22,11 +24,17 @@ class MyApp extends StatelessWidget {
 
 class MyAppHome extends StatelessWidget {
   MyAppHome({super.key});
-  final myAppBar = AppBar(
-    title: const Text(
-      "Personal Expenses",
-    ),
-  );
+  final Widget myAppBar = Platform.isIOS
+      ? const CupertinoNavigationBar(
+          middle: Text(
+            "Personal Expenses",
+          ),
+        )
+      : AppBar(
+          title: const Text(
+            "Personal Expenses",
+          ),
+        );
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -48,15 +56,30 @@ class MyAppHome extends StatelessWidget {
           ),
         ),
       ),
-      home: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: myAppBar,
-        body: Column(
-          children: [
-            UserTransaction(myAppBar.preferredSize.height),
-          ],
-        ),
-      ),
+      home: Platform.isIOS
+          ? CupertinoPageScaffold(
+              navigationBar: myAppBar as ObstructingPreferredSizeWidget,
+              child: Column(
+                children: [
+                  UserTransaction(
+                    (myAppBar as PreferredSizeWidget).preferredSize.height,
+                  ),
+                ],
+              ),
+            )
+          : Scaffold(
+              resizeToAvoidBottomInset: false,
+              appBar: myAppBar as PreferredSizeWidget,
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
+              body: Column(
+                children: [
+                  UserTransaction(
+                    (myAppBar as PreferredSizeWidget).preferredSize.height,
+                  ),
+                ],
+              ),
+            ),
     );
   }
 }
