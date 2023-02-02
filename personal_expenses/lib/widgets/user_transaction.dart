@@ -99,7 +99,7 @@ class _UserTransactionState extends State<UserTransaction> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text("Show Chart"),
-              Switch(
+              Switch.adaptive(
                 value: chartSet,
                 onChanged: (value) => setVariable(),
               ),
@@ -115,7 +115,7 @@ class _UserTransactionState extends State<UserTransaction> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text("Show Chart"),
-              Switch(
+              Switch.adaptive(
                 value: chartSet,
                 onChanged: (value) => setVariable(),
               ),
