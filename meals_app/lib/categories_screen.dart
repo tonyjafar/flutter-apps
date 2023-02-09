@@ -22,6 +22,7 @@ class GatecoriesScreen extends StatelessWidget {
         children: dummyCatageroy
             .map(
               (cat) => CategoryItem(
+                cat.id,
                 cat.title,
                 cat.color,
               ),
