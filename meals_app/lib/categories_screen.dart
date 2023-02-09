@@ -12,6 +12,7 @@ class GatecoriesScreen extends StatelessWidget {
         title: const Text("TonyMeals"),
       ),
       body: GridView(
+        padding: const EdgeInsets.all(25),
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 200,
           childAspectRatio: 1.5,

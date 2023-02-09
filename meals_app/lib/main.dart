@@ -13,7 +13,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Meals App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
+        canvasColor: const Color.fromARGB(255, 233, 232, 226),
+        fontFamily: 'Raleway',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              bodyLarge: const TextStyle(
+                color: Color.fromARGB(20, 51, 51, 1),
+              ),
+              bodySmall: const TextStyle(
+                color: Color.fromARGB(20, 51, 51, 1),
+              ),
+              titleLarge: const TextStyle(
+                fontSize: 20.0,
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.bold,
+              ),
+            ),
       ),
       home: const GatecoriesScreen(),
     );
