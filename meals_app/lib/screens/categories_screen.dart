@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dummy_data.dart';
-import 'category_item.dart';
+import '../dummy_data.dart';
+import 'package:meals_app/widgets/category_item.dart';
 
 class GatecoriesScreen extends StatelessWidget {
   const GatecoriesScreen({super.key});
