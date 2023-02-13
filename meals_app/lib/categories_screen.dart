@@ -19,7 +19,7 @@ class GatecoriesScreen extends StatelessWidget {
           crossAxisSpacing: 20,
           mainAxisSpacing: 20,
         ),
-        children: dummyCatageroy
+        children: dummyCategories
             .map(
               (cat) => CategoryItem(
                 cat.id,
