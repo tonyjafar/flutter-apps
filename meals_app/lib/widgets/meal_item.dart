@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meal.dart';
-import 'package:meals_app/screens/category_meals_screen.dart';
 
 class MealItem extends StatelessWidget {
   final String title;
@@ -15,6 +14,32 @@ class MealItem extends StatelessWidget {
       required this.complexity,
       required this.affordability,
       super.key});
+
+  String get complexityText {
+    switch (complexity) {
+      case Complexity.simple:
+        return "Simple";
+      case Complexity.challenging:
+        return "Challenging";
+      case Complexity.hard:
+        return "Hard";
+      default:
+        return "Unknown";
+    }
+  }
+
+  String get affordabiltyText {
+    switch (affordability) {
+      case Affordability.affordable:
+        return "Affordable";
+      case Affordability.luxurious:
+        return "Expensive";
+      case Affordability.pricey:
+        return "Pricy";
+      default:
+        return "Unknown";
+    }
+  }
 
   void selectMeal() {}
 
@@ -44,7 +69,67 @@ class MealItem extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
+                Positioned(
+                  bottom: 20,
+                  right: 10,
+                  child: Container(
+                    width: 300,
+                    color: Colors.black45,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 5,
+                      horizontal: 20,
+                    ),
+                    child: Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: 26,
+                        color: Colors.white,
+                      ),
+                      softWrap: true,
+                      overflow: TextOverflow.fade,
+                    ),
+                  ),
+                ),
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.schedule,
+                      ),
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      Text('$duration min'),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.work,
+                      ),
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      Text(complexityText),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Icon(Icons.attach_money),
+                      const SizedBox(
+                        width: 6,
+                      ),
+                      Text(affordabiltyText),
+                    ],
+                  )
+                ],
+              ),
             ),
           ],
         ),
