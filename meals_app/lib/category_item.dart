@@ -10,10 +10,13 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void selectCategory(BuildContext ctx) {
-      Navigator.of(ctx).pushNamed(CategoryMealsScreen.routeName, arguments: {
-        'id': id,
-        'title': title,
-      });
+      Navigator.of(ctx).pushNamed(
+        CategoryMealsScreen.routeName,
+        arguments: {
+          'id': id,
+          'title': title,
+        },
+      );
     }
 
     return InkWell(
