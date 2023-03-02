@@ -4,29 +4,44 @@ class ProductItem extends StatelessWidget {
   final String id;
   final String title;
   final String imageUrl;
-  const ProductItem(this.id, this.title, this.imageUrl, {super.key});
+  final double price;
+  const ProductItem(this.id, this.title, this.imageUrl, this.price,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GridTile(
-      footer: GridTileBar(
-        backgroundColor: Colors.black54,
-        leading: IconButton(
-          icon: const Icon(Icons.favorite),
-          onPressed: () {},
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: GridTile(
+        header: GridTileBar(
+          leading: Text(
+            "$price \$",
+            style: const TextStyle(
+              color: Colors.blueAccent,
+            ),
+          ),
         ),
-        trailing: IconButton(
-          icon: const Icon(Icons.shopping_cart),
-          onPressed: () {},
+        footer: GridTileBar(
+          backgroundColor: Colors.black87,
+          leading: IconButton(
+            icon: const Icon(Icons.favorite),
+            onPressed: () {},
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+          trailing: IconButton(
+            icon: const Icon(Icons.shopping_cart),
+            onPressed: () {},
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+          title: Text(
+            title,
+            textAlign: TextAlign.center,
+          ),
         ),
-        title: Text(
-          title,
-          textAlign: TextAlign.center,
+        child: Image.network(
+          imageUrl,
+          fit: BoxFit.cover,
         ),
-      ),
-      child: Image.network(
-        imageUrl,
-        fit: BoxFit.cover,
       ),
     );
   }
