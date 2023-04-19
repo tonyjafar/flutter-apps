@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/providers/cart_provider.dart';
+import 'package:shop_app/widgets/badge.dart';
 
 import 'package:shop_app/widgets/product_grid.dart';
 
@@ -44,6 +47,19 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
             ],
             icon: const Icon(Icons.more_vert),
           ),
+          Consumer<Cart>(
+            builder: (_, cart, ch) => CusBadge(
+              value: cart.itemCount.toString(),
+              color: Theme.of(context).colorScheme.secondary,
+              child: ch!,
+            ),
+            child: IconButton(
+              icon: const Icon(
+                Icons.shopping_cart,
+              ),
+              onPressed: () {},
+            ),
+          )
         ],
       ),
       body: ProductGrid(_showFavoritesOnly),
